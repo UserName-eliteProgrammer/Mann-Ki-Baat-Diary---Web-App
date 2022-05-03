@@ -7,9 +7,11 @@ function showCards() {
     let titleArr = JSON.parse(localStorage.getItem("titleKey"));
 
     for (let i = 0; i < cardsArr.length; i++) {
-
       let content = cardsArr[i].slice(0, 150);
-      content += ".....";
+
+      if (cardsArr[i].length > 150) {
+        content += ".....";
+      }
 
       cardsHTML += `<div class="card my-2 mx-2" style="width: 18rem;">
             <div class="card-body">

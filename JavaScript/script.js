@@ -20,6 +20,8 @@ addNoteBtn.addEventListener("click", () => {
 });
 
 function deleteCard(id) {
+  id = Number(id.slice(14));
+
   let cardsArr = JSON.parse(localStorage.getItem("key"));
   let titleArr = JSON.parse(localStorage.getItem("titleKey"));
 
