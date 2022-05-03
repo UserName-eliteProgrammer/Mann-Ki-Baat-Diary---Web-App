@@ -30,6 +30,9 @@ function showOnlyThisCard(index) {
   let cardsArr = JSON.parse(localStorage.getItem("key"));
   let titleArr = JSON.parse(localStorage.getItem("titleKey"));
 
+  // let content = cardsArr[i].slice(0, 40);
+  // content += ".....";
+
   cardsHTML += `<div class="card my-2 mx-2" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">${titleArr[index]}</h5>
