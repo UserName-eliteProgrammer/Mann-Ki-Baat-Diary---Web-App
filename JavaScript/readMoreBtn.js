@@ -36,14 +36,7 @@ function readMore(id) {
 </div>`;
       const fireModalBtn = document.getElementById("fireModalBtn");
       fireModalBtn.click();
-      break;
+      return;
     }
   }
-}
-
-if (document.querySelector(".closeModalBtn")) {
-  console.log("fired");
-  document.querySelector(".closeModalBtn").addEventListener("click", () => {
-    document.querySelector("body").innerHTML = prevHTML;
-  });
 }
