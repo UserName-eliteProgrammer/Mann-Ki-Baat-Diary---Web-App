@@ -40,7 +40,7 @@ function showOnlyThisCard(index) {
                     ${content}
                 </p>
                 <button type="button" class="btn btn-success mx-2" id="readNoteBtn_${index}" onclick = "readMore(this.id);">Read More</button>
-                <button type="button" class="btn btn-danger" id="deleteNoteBtn_${index}" onclick="deleteCard(this.id);">Delete Note</button>
+                <button type="button" class="btn btn-danger" id="deleteNoteBtn_${index}" onclick="deleteCard(this.id);">Delete</button>
             </div>
         </div>`;
 }
