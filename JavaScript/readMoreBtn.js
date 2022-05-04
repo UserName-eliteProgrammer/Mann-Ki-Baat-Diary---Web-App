@@ -1,42 +1,30 @@
-let prevHTML = document.querySelector("body").innerHTML;
+let readLessBtn = false;
+let prevHTML = cardsDiv.innerHTML;
 
 function readMore(id) {
   id = Number(id.slice(12));
+  // console.log(id);
   const cardsArr = JSON.parse(localStorage.getItem("key"));
   const titleArr = JSON.parse(localStorage.getItem("titleKey"));
 
   for (let i = 0; i < cardsArr.length; i++) {
     if (i == id) {
-      let modalContent = cardsArr[i];
-      let titleOfModal = titleArr[i];
-
-      document.querySelector("body").innerHTML =
-        prevHTML +
-        `<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="fireModalBtn" style="display: none">
-  
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" style="word-wrap: break-word">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">${titleOfModal}</h5>
-        <button type="button" class="btn-close closeModalBtn" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ${modalContent}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary closeModalBtn" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>`;
-      const fireModalBtn = document.getElementById("fireModalBtn");
-      fireModalBtn.click();
+      cardsDiv.innerHTML = `<div class="card my-2 mx-2" style="width: 100%;">
+            <div class="card-body">
+                <h5 class="card-title">${titleArr[i]}</h5>
+                <p class="card-text">
+                    ${cardsArr[i]}
+                </p>
+                <button type="button" class="btn btn-success mx-2" onclick = "readLess();">Read Less</button>
+                <button type="button" class="btn btn-danger" id="deleteNoteBtn_${i}" onclick="deleteCard(this.id);">Delete</button>
+            </div>
+        </div>`;
+      readLessBtn = true;
       return;
     }
   }
+}
+
+function readLess() {
+  cardsDiv.innerHTML = prevHTML;
 }
