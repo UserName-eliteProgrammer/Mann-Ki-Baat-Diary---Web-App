@@ -30,8 +30,12 @@ function showOnlyThisCard(index) {
   let cardsArr = JSON.parse(localStorage.getItem("key"));
   let titleArr = JSON.parse(localStorage.getItem("titleKey"));
 
+  let readMoreBtnHTML = `<button type="button" class="btn btn-success mx-2" id="readNoteBtn_${index}" onclick = "readMore(this.id);">Read More</button>`;
   let content = cardsArr[index].slice(0, 150);
-  content += ".....";
+
+  if (cardsArr[index].length > 150) {
+    content += ".....";
+  }
 
   cardsHTML += `<div class="card my-2 mx-2" style="width: 18rem;">
             <div class="card-body">
@@ -39,7 +43,7 @@ function showOnlyThisCard(index) {
                 <p class="card-text">
                     ${content}
                 </p>
-                <button type="button" class="btn btn-success mx-2" id="readNoteBtn_${index}" onclick = "readMore(this.id);">Read More</button>
+                ${cardsArr[index].length > 150 ? readMoreBtnHTML : ""}
                 <button type="button" class="btn btn-danger" id="deleteNoteBtn_${index}" onclick="deleteCard(this.id);">Delete</button>
             </div>
         </div>`;
