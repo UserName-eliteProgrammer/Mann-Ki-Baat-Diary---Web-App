@@ -8,6 +8,7 @@ function showCards() {
 
     for (let i = 0; i < cardsArr.length; i++) {
       let content = cardsArr[i].slice(0, 150);
+      let readMoreBtnHTML = `<button type="button" class="btn btn-success mx-2" id="readNoteBtn_${i}" onclick = "readMore(this.id);">Read More</button>`;
 
       if (cardsArr[i].length > 150) {
         content += ".....";
@@ -19,7 +20,7 @@ function showCards() {
                 <p class="card-text">
                     ${content}
                 </p>
-                <button type="button" class="btn btn-success mx-2" id="readNoteBtn_${i}" onclick = "readMore(this.id);">Read More</button>
+                ${cardsArr[i].length > 150 ? readMoreBtnHTML : ""}
                 <button type="button" class="btn btn-danger" id="deleteNoteBtn_${i}" onclick="deleteCard(this.id);">Delete</button>
             </div>
         </div>`;

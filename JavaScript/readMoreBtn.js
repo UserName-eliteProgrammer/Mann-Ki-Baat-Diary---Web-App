@@ -1,9 +1,10 @@
 let readLessBtn = false;
-let prevHTML = cardsDiv.innerHTML;
+let prevHTML = null;
 
 function readMore(id) {
   id = Number(id.slice(12));
-  // console.log(id);
+  prevHTML = cardsDiv.innerHTML;
+
   const cardsArr = JSON.parse(localStorage.getItem("key"));
   const titleArr = JSON.parse(localStorage.getItem("titleKey"));
 
