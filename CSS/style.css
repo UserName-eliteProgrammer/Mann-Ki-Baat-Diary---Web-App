@@ -6,6 +6,7 @@
 
 mark {
   background-color: aqua;
+  padding: 0;
 }
 
 @media screen and (max-width: 850px) {
