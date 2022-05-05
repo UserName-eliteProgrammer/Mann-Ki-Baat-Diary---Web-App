@@ -3,6 +3,11 @@ let cardsHTML = "";
 
 searchInp.addEventListener("input", () => {
   const inpVal = searchInp.value;
+  if (inpVal == "") {
+    showCards();
+    return;
+  }
+
   cardsHTML = "";
   cardsDiv.innerHTML = "";
   if (localStorage.getItem("key")) {
@@ -20,30 +25,55 @@ searchInp.addEventListener("input", () => {
     }
 
     for (let i = 0; i < itemsMatched.length; i++) {
-      showOnlyThisCard(itemsMatched[i]);
+      showOnlyThisCard(itemsMatched[i], inpVal);
     }
     cardsDiv.innerHTML = cardsHTML;
   }
 });
 
-function showOnlyThisCard(index) {
+function showOnlyThisCard(index, inpVal) {
   let cardsArr = JSON.parse(localStorage.getItem("key"));
   let titleArr = JSON.parse(localStorage.getItem("titleKey"));
 
   let readMoreBtnHTML = `<button type="button" class="btn btn-success mx-2" id="readNoteBtn_${index}" onclick = "readMore(this.id);">Read More</button>`;
-  let content = cardsArr[index].slice(0, 150);
+  let content = cardsArr[index];
+  let titleContent = titleArr[index];
 
-  if (cardsArr[index].length > 150) {
-    content += ".....";
+  let findIndexOfInpValInContent = content
+    .toLowerCase()
+    .search(inpVal.toLowerCase());
+  let findIndexOfInpValInTitle = titleArr[index]
+    .toLowerCase()
+    .search(inpVal.toLowerCase());
+
+  // console.log(inpVal);
+
+  if (findIndexOfInpValInContent != -1) {
+    content =
+      content.substring(0, findIndexOfInpValInContent) +
+      `<mark>${content.slice(
+        findIndexOfInpValInContent,
+        findIndexOfInpValInContent + inpVal.length
+      )}</mark>` +
+      content.slice(findIndexOfInpValInContent + inpVal.length);
+  }
+  if (findIndexOfInpValInTitle != -1) {
+    titleContent =
+      titleContent.substring(0, findIndexOfInpValInTitle) +
+      `<mark>${titleContent.slice(
+        findIndexOfInpValInTitle,
+        findIndexOfInpValInTitle + inpVal.length
+      )}</mark>` +
+      titleContent.slice(findIndexOfInpValInTitle + inpVal.length);
   }
 
   cardsHTML += `<div class="card my-2 mx-2" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">${titleArr[index]}</h5>
+                <h5 class="card-title">${titleContent}</h5>
                 <p class="card-text">
-                    ${content}
+                  ${content}
                 </p>
-                ${cardsArr[index].length > 150 ? readMoreBtnHTML : ""}
+                ${cardsArr[index].length > 25 ? readMoreBtnHTML : ""}
                 <button type="button" class="btn btn-danger" id="deleteNoteBtn_${index}" onclick="deleteCard(this.id);">Delete</button>
             </div>
         </div>`;
