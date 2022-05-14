@@ -12,6 +12,8 @@ addNoteBtn.addEventListener("click", () => {
   textContent = text.value;
   titleContent = noteTitle.value;
 
+  // console.log(textContent);
+
   addToLocalStorage(textContent, titleContent);
   showCards();
 
