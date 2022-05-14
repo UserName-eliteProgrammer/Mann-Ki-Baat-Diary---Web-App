@@ -10,13 +10,7 @@ function readMore(id) {
 
   for (let i = 0; i < cardsArr.length; i++) {
     if (i == id) {
-      let content = "";
-      for (let j = 0; j < cardsArr[i].length; j++) {
-        content += `<span>${cardsArr[i].charAt(j)}</span>`;
-        if (cardsArr[i].charAt(j) == "\n") {
-          content += `<br>`;
-        }
-      }
+      let content = insertContent(cardsArr[i]); // show cards
 
       cardsDiv.innerHTML = `<div class="card my-2 mx-2" style="width: 100%; word-wrap: word-break">
             <div class="card-body">

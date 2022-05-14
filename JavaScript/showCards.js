@@ -1,5 +1,17 @@
 const cardsDiv = document.getElementById("cardsDiv");
 
+function insertContent(inpStr) {
+  let content = "";
+  for (let j = 0; j < inpStr.length; j++) {
+    if (inpStr.charAt(j) == "\n") {
+      content += "<br>";
+    } else {
+      content += inpStr.charAt(j);
+    }
+  }
+  return content;
+}
+
 function showCards() {
   let cardsHTML = "";
   if (localStorage.getItem("key")) {
@@ -13,14 +25,7 @@ function showCards() {
         contentStr += ".....";
       }
 
-      let content = "";
-      for (let j = 0; j < contentStr.length; j++) {
-        if (contentStr.charAt(j) == "\n") {
-          content += "<br>";
-        } else {
-          content += contentStr.charAt(j);
-        }
-      }
+      let content = insertContent(contentStr); // showCards
 
       cardsHTML += `<div class="card my-2 mx-2" style="width: 18rem;">
             <div class="card-body">

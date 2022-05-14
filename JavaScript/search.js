@@ -49,12 +49,14 @@ function showOnlyThisCard(index, inpVal) {
 
   if (findIndexOfInpValInContent != -1) {
     content =
-      content.substring(0, findIndexOfInpValInContent) +
-      `<mark>${content.slice(
-        findIndexOfInpValInContent,
-        findIndexOfInpValInContent + inpVal.length
+      insertContent(content.substring(0, findIndexOfInpValInContent)) + // insertContent -> showCard
+      `<mark>${insertContent(
+        content.slice(
+          findIndexOfInpValInContent,
+          findIndexOfInpValInContent + inpVal.length
+        )
       )}</mark>` +
-      content.slice(findIndexOfInpValInContent + inpVal.length);
+      insertContent(content.slice(findIndexOfInpValInContent + inpVal.length));
   }
   if (findIndexOfInpValInTitle != -1) {
     titleContent =
